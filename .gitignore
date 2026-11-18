@@ -1,0 +1,6 @@
+.DS_Store
+Icon?
+*.swp
+.vscode/
+.idea/
+.claude/settings.local.json

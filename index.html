@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beaujolais – Weinbaugebiet im Überblick</title>
+<meta name="description" content="Beaujolais Nouveau und Lyon, dazu das Weinbaugebiet im Überblick: Gamay, Appellationen, die 10 Crus, Lagen, Produzenten, Traditionen, Orte und Speisebegleitung.">
+<link rel="preload" href="fonts/geist-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/newsreader-light.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  /* Schriften: Geist (Text) und Newsreader Light (Titel), beide SIL Open Font
+     License, lokal in fonts/ (Lizenzen dort). Typografie übernommen von
+     website-sevi (assets/css/tokens.css). */
+  @font-face{font-family:Geist;font-style:normal;font-weight:400;font-display:swap;src:url('fonts/geist-regular.woff2') format('woff2')}
+  @font-face{font-family:Geist;font-style:normal;font-weight:600;font-display:swap;src:url('fonts/geist-semibold.woff2') format('woff2')}
+  @font-face{font-family:Newsreader;font-style:normal;font-weight:300;font-display:swap;src:url('fonts/newsreader-light.woff2') format('woff2')}
+
+  :root{
+    --bg:#fbf8f4; --surface:#ffffff; --ink:#2a1f24; --muted:#6d5f66;
+    --gamay:#6b1f45; --gamay-soft:#f3e6ec; --granite:#d9a6a0; --stone:#e8c77a;
+    --line:#e7dde0; --accent:#b0436f; --saone:#7aa6c2;
+    --radius:14px; --maxw:1080px;
+
+    /* Typografie (wie website-sevi) */
+    --sans: Geist,"Helvetica Neue",Arial,system-ui,sans-serif;
+    --serif: Newsreader,Geist,Georgia,"Times New Roman",serif; /* Geist springt für Pfeile ein */
+    --fw-regular:400; --fw-bold:600; --fw-heading:300;
+    --fs-display: clamp(52px,14vw,120px);
+    --fs-h2: clamp(32px,4.6vw,48px);
+    --fs-title: 22px;
+    --fs-text: 17px;
+    --fs-small: 13px;
+    --lh-display:1.02; --lh-h2:1.1; --lh-heading:1.3; --lh-quote:1.35; --lh-ui:1.4; --lh-body-s:1.5; --lh-body:1.6;
+    --ls-display:-0.028em; --ls-h2:-0.03em; --ls-heading:-0.015em; --ls-label:0.06em;
+    --touch-min:44px;
+  }
+  @media (min-width:640px){
+    :root{ --fs-title:26px; --fs-text:18px; --fs-small:14px; }
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#17121a; --surface:#211a24; --ink:#efe6ea; --muted:#b4a6ad;
+      --gamay:#e08ab0; --gamay-soft:#33202b; --line:#3a2e37; --accent:#f0a3c4;
+      --granite:#8a5a55; --stone:#8d7440; --saone:#4f7c98;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:var(--fw-regular);font-size:var(--fs-text);line-height:var(--lh-body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  a{color:var(--accent);text-underline-offset:3px}
+  b,strong{font-weight:var(--fw-bold)}
+  p,li{text-wrap:pretty}
+  h1,h2,h3{font-family:var(--serif);font-weight:var(--fw-heading);color:var(--gamay);text-wrap:balance}
+  h2{font-size:var(--fs-h2);line-height:var(--lh-h2);letter-spacing:var(--ls-h2);margin:0 0 1rem}
+  h3{font-size:var(--fs-title);line-height:var(--lh-heading);letter-spacing:var(--ls-heading);margin:1.4rem 0 .5rem}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .eyebrow{font-size:var(--fs-small);line-height:var(--lh-ui);letter-spacing:var(--ls-label);text-transform:uppercase;margin:0}
+
+  /* Hero */
+  header.hero{background:linear-gradient(135deg,#4a1230 0%,#6b1f45 55%,#a8456f 100%);color:#fff;padding:56px 0 40px}
+  header.hero .eyebrow{opacity:.85}
+  header.hero h1{color:#fff;font-size:var(--fs-display);line-height:var(--lh-display);letter-spacing:var(--ls-display);margin:.2em 0 .25em}
+  header.hero p.lead{max-width:640px;opacity:.95;margin:0 0 1.6rem}
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:20px}
+  .fact{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 14px}
+  .fact b{display:block;font-family:var(--serif);font-weight:var(--fw-heading);font-size:var(--fs-title);line-height:var(--lh-heading);letter-spacing:var(--ls-heading)}
+  .fact span{display:block;font-size:var(--fs-small);line-height:var(--lh-ui);opacity:.9}
+
+  /* Nav */
+  nav.toc{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.toc ul{list-style:none;margin:0 auto;padding:8px 20px;display:flex;gap:6px;overflow-x:auto;max-width:var(--maxw);scrollbar-width:none}
+  nav.toc a{display:flex;align-items:center;min-height:var(--touch-min);white-space:nowrap;padding:0 14px;border-radius:999px;text-decoration:none;color:var(--ink);font-size:var(--fs-small);line-height:var(--lh-ui);border:1px solid var(--line);background:var(--surface)}
+  nav.toc a:hover{border-color:var(--accent);color:var(--accent)}
+  nav.toc a.hot{border-color:var(--gamay);color:var(--gamay);font-weight:var(--fw-bold)}
+
+  section{padding:48px 0;border-bottom:1px solid var(--line);scroll-margin-top:64px}
+  [id]{scroll-margin-top:72px}
+  .intro{color:var(--muted);max-width:720px;margin-top:0}
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  @media (min-width:640px){.pair{grid-template-columns:repeat(2,1fr)}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+  .card h3{margin-top:0}
+  .card ul,.card ol{padding-left:1.1rem;margin:.3rem 0}
+  .card li+li{margin-top:.35rem}
+  .tag{display:inline-block;font-size:var(--fs-small);line-height:var(--lh-ui);padding:2px 10px;border-radius:999px;background:var(--gamay-soft);color:var(--gamay);margin:0 4px 6px 0}
+  .callout{background:var(--gamay-soft);border-left:4px solid var(--gamay);border-radius:10px;padding:14px 18px;margin:18px 0}
+  .src{font-size:var(--fs-small);line-height:var(--lh-ui);color:var(--muted);margin:.8rem 0 0}
+  .src a{color:var(--muted)}
+
+  /* Pyramid */
+  .pyramid{display:flex;flex-direction:column;align-items:center;gap:6px;margin:20px 0}
+  .tier{text-align:center;color:#fff;padding:12px 16px;border-radius:8px;font-weight:var(--fw-bold);line-height:var(--lh-ui)}
+  .tier small{display:block;font-weight:var(--fw-regular);font-size:var(--fs-small);opacity:.9}
+  .t1{width:min(46%,420px);background:#4a1230}
+  .t2{width:min(70%,640px);background:#7a2a55}
+  .t3{width:min(94%,860px);background:#a8456f}
+  .t0{width:min(30%,300px);background:repeating-linear-gradient(45deg,#4a1230,#4a1230 8px,#5e1a3c 8px,#5e1a3c 16px);border:2px dashed #d9a6a0}
+
+  /* Tables */
+  .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+  table{border-collapse:collapse;width:100%;min-width:760px;font-size:var(--fs-small);line-height:var(--lh-body-s)}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--gamay-soft);color:var(--gamay);font-weight:var(--fw-bold);position:sticky;top:0}
+  tr:last-child td{border-bottom:none}
+  td.num{color:var(--muted);font-variant-numeric:tabular-nums;width:2rem}
+  td.cru{font-family:var(--serif);font-weight:var(--fw-heading);font-size:var(--fs-title);line-height:var(--lh-heading);letter-spacing:var(--ls-heading);white-space:nowrap;color:var(--gamay)}
+
+  /* Map */
+  .mapbox{display:grid;grid-template-columns:minmax(260px,380px) 1fr;gap:24px;align-items:start}
+  @media (max-width:760px){.mapbox{grid-template-columns:1fr}}
+  svg.map{width:100%;height:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+  svg.map text{font-family:var(--sans);fill:var(--ink)}
+
+  /* Nouveau-Countdown im Hero */
+  .countdown{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);border-radius:var(--radius);padding:18px 20px;margin:0 0 8px}
+  .countdown .big{font-family:var(--serif);font-weight:var(--fw-heading);font-size:clamp(56px,16vw,96px);line-height:1;letter-spacing:var(--ls-display);font-variant-numeric:tabular-nums}
+  .countdown p{margin:0}
+  .countdown .cd-label{font-family:var(--serif);font-weight:var(--fw-heading);font-size:var(--fs-title);line-height:var(--lh-heading);letter-spacing:var(--ls-heading)}
+  .countdown .cd-date{font-size:var(--fs-small);line-height:var(--lh-ui);opacity:.9}
+  .countdown .cd-text{flex:1 1 220px}
+  .btn{display:inline-flex;align-items:center;min-height:var(--touch-min);padding:0 18px;border-radius:999px;background:#fff;color:#4a1230;text-decoration:none;font-weight:var(--fw-bold);font-size:var(--fs-small);line-height:var(--lh-ui)}
+  .btn:hover{background:var(--gamay-soft)}
+  .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5)}
+  .btn.ghost:hover{background:rgba(255,255,255,.12)}
+  .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+
+  /* Nouveau-Abend als Zeitleiste */
+  ol.timeline{list-style:none;padding:0;margin:.3rem 0;border-left:2px solid var(--granite)}
+  ol.timeline li{position:relative;padding:0 0 .9rem 18px;margin:0}
+  ol.timeline li::before{content:"";position:absolute;left:-7px;top:.5em;width:12px;height:12px;border-radius:50%;background:var(--gamay)}
+  ol.timeline li b{display:block}
+
+  /* Zitat */
+  blockquote.quote{margin:0 0 24px;padding:4px 0 4px 20px;border-left:2px solid var(--gamay);max-width:720px}
+  blockquote.quote p{font-family:var(--serif);font-weight:var(--fw-heading);font-size:var(--fs-title);line-height:var(--lh-quote);letter-spacing:var(--ls-heading);color:var(--gamay);margin:0}
+  blockquote.quote footer{padding:6px 0 0;font-size:var(--fs-small);line-height:var(--lh-ui);color:var(--muted)}
+
+  dl.glossary{display:grid;grid-template-columns:max-content 1fr;gap:8px 20px;margin:0}
+  dl.glossary dt{font-weight:var(--fw-bold);color:var(--gamay)}
+  dl.glossary dd{margin:0}
+  @media (max-width:600px){dl.glossary{grid-template-columns:1fr;gap:2px}dl.glossary dd{margin-bottom:10px}}
+
+  body>footer{padding:36px 0 60px;color:var(--muted);font-size:var(--fs-small);line-height:var(--lh-body-s)}
+  body>footer ol{padding-left:1.2rem}
+  body>footer li+li{margin-top:.3rem}
+  .muted{color:var(--muted)}
+  .small{font-size:var(--fs-small);line-height:var(--lh-body-s)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Weinbaugebiet · Frankreich · nördlich von Lyon</p>
+    <h1>Beaujolais</h1>
+    <p class="lead">Granithügel zwischen Mâcon und Lyon, fast vollständig dem Gamay verschrieben – vom Nouveau, der jedes Jahr im November Lyon in Feststimmung versetzt, bis zum lagerfähigen Cru aus Einzellagen.</p>
+
+    <div class="countdown" id="countdown" aria-live="polite">
+      <div class="big" id="cd-days">–</div>
+      <div class="cd-text">
+        <p class="cd-label" id="cd-label">Nächster Beaujolais-Nouveau-Tag</p>
+        <p class="cd-date" id="cd-date">wird berechnet …</p>
+        <div class="btns">
+          <a class="btn" href="#nouveau">Alles zum Nouveau</a>
+          <a class="btn ghost" href="#lyon">Nouveau in Lyon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="facts">
+      <div class="fact"><b>3. Do. im Nov.</b><span>Beaujolais-Nouveau-Tag, Freigabe um 00:01 Uhr</span></div>
+      <div class="fact"><b>46 cl</b><span>der «Pot lyonnais», in dem Lyon seinen Beaujolais trinkt</span></div>
+      <div class="fact"><b>≈ 13 000 ha</b><span>Rebfläche heute (vor 20 Jahren ≈ 22 000 ha)</span></div>
+      <div class="fact"><b>≈ 96 %</b><span>Gamay-Anteil an der Rebfläche</span></div>
+      <div class="fact"><b>12</b><span>Appellationen: Beaujolais, Beaujolais-Villages und 10 Crus</span></div>
+      <div class="fact"><b>~55 km</b><span>Nord-Süd-Ausdehnung, 10–15 km breit</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <ul>
+    <li><a class="hot" href="#nouveau">Beaujolais Nouveau</a></li>
+    <li><a class="hot" href="#lyon">Lyon &amp; Beaujolais</a></li>
+    <li><a href="#lage">Lage &amp; Terroir</a></li>
+    <li><a href="#trauben">Trauben</a></li>
+    <li><a href="#appellationen">Appellationen</a></li>
+    <li><a href="#crus">Die 10 Crus</a></li>
+    <li><a href="#lagen">Lagen &amp; Premier Cru</a></li>
+    <li><a href="#stil">Weinstil &amp; Vinifikation</a></li>
+    <li><a href="#produzenten">Produzenten</a></li>
+    <li><a href="#traditionen">Traditionen</a></li>
+    <li><a href="#orte">Orte &amp; Reisen</a></li>
+    <li><a href="#essen">Essen &amp; Wein</a></li>
+    <li><a href="#trends">Trends</a></li>
+    <li><a href="#glossar">Glossar</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- NOUVEAU -->
+<section id="nouveau">
+  <div class="wrap">
+    <p class="eyebrow muted">Jedes Jahr im November</p>
+    <h2>Beaujolais Nouveau</h2>
+    <p class="intro">Der jüngste Wein Frankreichs: wenige Wochen nach der Lese abgefüllt und weltweit am selben Tag freigegeben. Bevor er nach Paris, London und Tokio reiste, war er schlicht der neue Wein für die Bistros von Lyon – und dort wird er bis heute am herzlichsten gefeiert.</p>
+
+    <div class="grid pair">
+      <div class="card">
+        <h3>Was ist das?</h3>
+        <ul>
+          <li>Primeurwein aus dem Jahrgang derselben Ernte – gelesen im Spätsommer, abgefüllt nach nur wenigen Wochen.</li>
+          <li>Nur aus <b>Beaujolais</b> und <b>Beaujolais-Villages</b> erlaubt (rot und rosé), nie aus den Crus.</li>
+          <li>Freigabe weltweit am <b>dritten Donnerstag im November um 00:01 Uhr</b>.</li>
+          <li>Stil: <i>macération carbonique</i>, viel Frucht, kaum Tannin – zum Trinken innerhalb weniger Monate, am besten bis zum Frühling.</li>
+          <li>Leicht gekühlt servieren, bei 11–13 °C.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Der Nouveau-Abend</h3>
+        <ol class="timeline">
+          <li><b>Mittwochabend</b>Bars, Bouchons und Weinhandlungen füllen sich, dazu gibt es Charcuterie – man wartet auf Mitternacht.</li>
+          <li><b>Donnerstag, 00:01 Uhr</b>Freigabe: Die ersten Flaschen werden geöffnet. «Le Beaujolais Nouveau est arrivé !»</li>
+          <li><b>Donnerstag</b>Der neue Jahrgang steht überall auf der Karte – im Bouchon wird er im <a href="#lyon">Pot lyonnais</a> ausgeschenkt.</li>
+          <li><b>Das Wochenende danach</b>Feste im Weinbaugebiet, allen voran die <a href="#traditionen">Sarmentelles in Beaujeu</a>.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>Geschichte</h3>
+        <ul>
+          <li>Ursprünglich der Jungwein für die Bistros und Bouchons in Lyon (mehr dazu im <a href="#lyon">nächsten Abschnitt</a>).</li>
+          <li><b>1951:</b> erstes offizielles Freigabedatum (15. November).</li>
+          <li><b>1970er/80er:</b> Weltweiter Hype mit dem Slogan «Le Beaujolais Nouveau est arrivé !» – Rennen um die erste Flasche nach Paris, London, Tokio.</li>
+          <li><b>1985:</b> Das INAO legt den dritten Donnerstag im November fest.</li>
+          <li>Georges Duboeuf (1933–2020), der «Papst des Beaujolais», machte den Nouveau zur globalen Marke.</li>
+          <li>Seit dem Höhepunkt um 2000 sind die Mengen stark gesunken (von rund 450 000 hl auf zuletzt rund 120 000 hl). Japan bleibt ein wichtiger Markt.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Boom und Kater</h3>
+        <p>Der Nouveau-Erfolg der späten 1970er- und der 1980er-Jahre spülte rasch Geld in die Region – und verleitete viele dazu, es mit der Qualität nicht mehr so genau zu nehmen. Den Bananenton, den die stürmische Gärung damals hinterliess, hielt man lange für typisch; heute ist er weitgehend verschwunden. Eine Folge des Booms spürt die Region bis heute: Viele unterschätzen den Beaujolais als blossen Partywein.</p>
+        <p class="src">Quelle: <a href="#q-weinatlas">Weinatlas, S. 66</a></p>
+      </div>
+    </div>
+    <div class="callout"><b>Ambivalentes Erbe:</b> Der Nouveau machte das Beaujolais weltbekannt, prägte aber auch das Image eines simplen «Bananenweins». Viele Spitzenwinzer setzen heute bewusst auf Crus und Lagen – einige keltern aber auch hochwertige, naturnahe Nouveaux. Tipp: Nach einem Nouveau von einem Winzer statt von einem grossen Handelshaus fragen.</div>
+  </div>
+</section>
+
+<!-- LYON -->
+<section id="lyon">
+  <div class="wrap">
+    <p class="eyebrow muted">Die Hauptstadt des Beaujolais</p>
+    <h2>Lyon &amp; der Beaujolais</h2>
+    <p class="intro">Die Reben beginnen rund 20 Kilometer nördlich der Stadt. Für Lyon ist der Beaujolais deshalb kein Exportprodukt, sondern Hauswein: Er gehört in den Bouchon wie das Saucisson auf den Tisch – und der Nouveau ist der Moment, in dem die Stadt den neuen Jahrgang begrüsst.</p>
+
+    <blockquote class="quote">
+      <p>«Lyon wird von drei Flüssen gespeist: der Rhône, der Saône – und dem Beaujolais.»</p>
+      <footer>Bonmot, meist dem Schriftsteller Léon Daudet zugeschrieben</footer>
+    </blockquote>
+
+    <div class="grid g3">
+      <div class="card">
+        <h3>Der Wein der Bouchons</h3>
+        <p>Der frische, junge Wein aus dem südlichen Beaujolais rund um die Pierres Dorées war schon immer der Schankwein der <i>bouchons</i>, der typischen kleinen Lyoner Wirtshäuser. Lange bevor es ein offizielles Freigabedatum gab, kam der neue Wein dort gleich nach der Gärung ins Glas – der Nouveau ist im Grunde ein Lyoner Brauch, den die Welt übernommen hat.</p>
+        <p class="src">Quelle: <a href="#q-weinatlas">Weinatlas, S. 66</a></p>
+      </div>
+      <div class="card">
+        <h3>Pot lyonnais</h3>
+        <p>Die dickbödige 46-cl-Flasche, in der Beaujolais in Lyoner Bouchons ausgeschenkt wird. Bestellt wird «un pot» – meist für zwei oder drei Personen. Der schwere Glasboden macht die Flasche standfest und lässt sie voller aussehen, als sie ist.</p>
+      </div>
+      <div class="card">
+        <h3>Mâchon</h3>
+        <p>Das deftige Vormittagsessen der Lyoner Seidenweber (<i>canuts</i>) und Marktleute: Charcuterie, Innereien, Käse – und dazu ein Pot Beaujolais. Einige Bouchons und Vereine pflegen die Tradition bis heute, gern am Wochenende.</p>
+      </div>
+      <div class="card">
+        <h3>Gnafron</h3>
+        <p>Der rotnasige Freund des Guignol aus dem Lyoner Puppentheater ist ein bekennender Beaujolais-Trinker. Er ziert das Label «Les Bouchons Lyonnais», das traditionelle Bouchons auszeichnet.</p>
+      </div>
+      <div class="card">
+        <h3>Was dazu essen</h3>
+        <p>Saucisson brioché, Rosette und Jésus de Lyon, Gratons, Cervelle de canut (Kräuterquark), Salade lyonnaise, Andouillette, Quenelles. Mehr Kombinationen unter <a href="#essen">Essen &amp; Wein</a>.</p>
+      </div>
+      <div class="card">
+        <h3>Kurz ins Weinbaugebiet</h3>
+        <p>Der TER ab Lyon Part-Dieu erreicht Villefranche-sur-Saône in rund einer halben Stunde, weiter nördlich hält er in Belleville am Fuss der Crus. Für Beaujeu und die Dörfer braucht es ein Auto, Velo oder Taxi.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <b>Tipps für den Nouveau in Lyon</b>
+      <ul>
+        <li><b>Reservieren:</b> Rund um den Nouveau-Donnerstag sind die Bouchons voll – einen Tisch frühzeitig sichern.</li>
+        <li><b>Wo:</b> Bouchons im Vieux Lyon und auf der Presqu’île, Weinbars in der Croix-Rousse; die Halles Paul Bocuse für Charcuterie und Käse.</li>
+        <li><b>Bestellen:</b> «Un pot de Beaujolais nouveau, s’il vous plaît» – und dazu einen Teller Charcuterie.</li>
+        <li><b>Vergleichen:</b> Neben dem Nouveau einen Beaujolais-Villages oder einen Cru (z. B. Fleurie, Morgon) bestellen – der Unterschied ist verblüffend.</li>
+        <li><b>Weiterziehen:</b> Am Wochenende nach dem Nouveau-Tag lohnt sich ein Abstecher nach Beaujeu an die <a href="#traditionen">Sarmentelles</a>.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- LAGE -->
+<section id="lage">
+  <div class="wrap">
+    <h2>Lage, Klima &amp; Böden</h2>
+    <p class="intro">Das Beaujolais zieht sich rund 55 Kilometer von den Granithügeln gleich südlich von Mâcon bis ins flachere Land nordwestlich von Lyon, grösstenteils im Département Rhône, mit einem kleinen Teil in Saône-et-Loire. Administrativ wird es oft zum Burgund gezählt – und erzeugt fast so viel Wein wie alle übrigen burgundischen Gebiete zusammen. Stilistisch und kulturell ist es eng mit Lyon verbunden.</p>
+
+    <div class="mapbox">
+      <svg class="map" viewBox="0 0 360 540" role="img" aria-label="Schematische Karte des Beaujolais mit den zehn Crus von Nord nach Süd">
+        <!-- zones -->
+        <ellipse cx="190" cy="185" rx="120" ry="150" fill="var(--granite)" opacity=".35"/>
+        <ellipse cx="190" cy="430" rx="110" ry="85" fill="var(--stone)" opacity=".35"/>
+        <!-- Saône -->
+        <path d="M300 0 C 285 80, 315 140, 295 220 S 300 360, 285 430 S 300 500, 290 540" stroke="var(--saone)" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <text x="312" y="250" font-size="12" fill="var(--saone)" transform="rotate(90 312 250)">Saône</text>
+        <!-- mountains -->
+        <path d="M18 230 l14 -22 l14 22 z M40 270 l16 -26 l16 26 z M14 320 l13 -20 l13 20 z" fill="var(--muted)" opacity=".5"/>
+        <text x="10" y="350" font-size="11" fill="var(--muted)">Monts du</text>
+        <text x="10" y="364" font-size="11" fill="var(--muted)">Beaujolais</text>
+        <!-- cities -->
+        <g font-size="12" font-weight="600">
+          <circle cx="285" cy="18" r="5" fill="var(--ink)"/><text x="230" y="22">Mâcon</text>
+          <circle cx="268" cy="380" r="5" fill="var(--ink)"/><text x="160" y="384">Villefranche-s/S.</text>
+          <circle cx="275" cy="522" r="6" fill="var(--ink)"/><text x="235" y="526">Lyon</text>
+        </g>
+        <g font-size="11" fill="var(--muted)">
+          <circle cx="95" cy="205" r="3.5" fill="var(--muted)"/><text x="58" y="198">Beaujeu</text>
+          <circle cx="160" cy="455" r="3.5" fill="var(--muted)"/><text x="100" y="472">Oingt · Pierres Dorées</text>
+        </g>
+        <!-- crus -->
+        <g font-size="12">
+          <circle cx="205" cy="52" r="6" fill="var(--gamay)"/><text x="112" y="56">1 Saint-Amour</text>
+          <circle cx="170" cy="82" r="6" fill="var(--gamay)"/><text x="88" y="86">2 Juliénas</text>
+          <circle cx="200" cy="108" r="6" fill="var(--gamay)"/><text x="210" y="105">3 Chénas</text>
+          <circle cx="232" cy="134" r="6" fill="var(--gamay)"/><text x="186" y="152" font-size="11">4 Moulin-à-Vent</text>
+          <circle cx="175" cy="165" r="6" fill="var(--gamay)"/><text x="110" y="169">5 Fleurie</text>
+          <circle cx="135" cy="195" r="6" fill="var(--gamay)"/><text x="108" y="222" font-size="11">6 Chiroubles</text>
+          <circle cx="200" cy="215" r="6" fill="var(--gamay)"/><text x="210" y="219">7 Morgon</text>
+          <circle cx="150" cy="248" r="6" fill="var(--gamay)"/><text x="80" y="252">8 Régnié</text>
+          <circle cx="175" cy="295" r="6" fill="var(--gamay)"/><text x="105" y="310">9 Brouilly</text>
+          <circle cx="215" cy="285" r="6" fill="var(--gamay)"/><text x="168" y="274" font-size="11">10 Côte de Brouilly</text>
+        </g>
+        <text x="200" y="345" font-size="10" fill="var(--muted)" text-anchor="middle">Nord: Granit · Crus &amp; Villages</text>
+        <text x="190" y="505" font-size="10" fill="var(--muted)" text-anchor="middle">Süd: Kalk/Lehm · Beaujolais AOC</text>
+        <text x="8" y="534" font-size="9" fill="var(--muted)">Schematisch, nicht massstabsgetreu</text>
+      </svg>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Klima</h3>
+          <ul>
+            <li>Gemässigt-kontinental mit südlichem, mediterran angehauchtem Einfluss aus dem Rhonetal.</li>
+            <li>Die Monts du Beaujolais im Westen (bis gut 1000 m) schützen vor atlantischen Westwinden und Regen.</li>
+            <li>Hauptrisiken: Hagel im Sommer, zunehmend Hitze und Trockenheit; die Lese rückt durch den Klimawandel tendenziell nach vorne.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Zwei geologische Welten</h3>
+          <p>Die Grenze verläuft knapp nördlich von Villefranche-sur-Saône.</p>
+          <ul>
+            <li><b>Haut-Beaujolais (Norden):</b> Granit mit sandigem Oberboden, dazu Schiefer, Diorit und vulkanisches Gestein. Der durchlässige, wärmespeichernde Boden lässt den Gamay voll ausreifen. Hier liegen die Crus und die Villages-Gemeinden; die Reben steigen an den bewaldeten Hängen im Westen bis auf rund 450 m.</li>
+            <li><b>Bas-Beaujolais (Süden):</b> Ton über Granit und Kalk, Heimat der «Pierres Dorées», goldgelber Kalksteindörfer. Der Tonboden bleibt kühl; selbst in guten Jahren reifen die Trauben selten voll aus. Die Weine sind frisch, halten aber meist nicht lange – mit Ausnahmen. Vor allem AOC Beaujolais, inkl. Weisswein.</li>
+            <li>Unter den Crus liegt fast überall derselbe Schiefer oder sandige Granit wie an der Côte-Rôtie, rund 100 km weiter südlich. Erst die Erosion schuf das Mosaik aus Oberböden, Expositionen und Hangneigungen.</li>
+            <li>Das Gebiet ist seit 2018 UNESCO Global Geopark – eine Anerkennung der geologischen Vielfalt.</li>
+          </ul>
+          <p class="src">Quelle: <a href="#q-weinatlas">Weinatlas, S. 66 und 68</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAUBEN -->
+<section id="trauben">
+  <div class="wrap">
+    <h2>Trauben</h2>
+    <div class="grid g2">
+      <div class="card">
+        <h3>Gamay noir à jus blanc</h3>
+        <span class="tag">≈ 96 % der Fläche</span><span class="tag">rot &amp; rosé</span>
+        <ul>
+          <li>Natürliche Kreuzung aus Pinot Noir × Gouais Blanc.</li>
+          <li>Rund die Hälfte des weltweiten Gamay-Bestands steht im Beaujolais.</li>
+          <li>Dünnschalig, saftig, mit lebendiger Säure und moderaten Tanninen; Aromen von Kirsche, Himbeere, Johannisbeere, Veilchen und Pfingstrose, mit Reife auch Pilz und Unterholz.</li>
+          <li>Auf Granit entfaltet Gamay seine grösste Präzision und Lagerfähigkeit.</li>
+          <li>Klassische Erziehung: <b>Gobelet</b> (Buscherziehung ohne Drahtrahmen) – heute vermehrt auch Drahtrahmen, um die Arbeit an steilen Hängen zu erleichtern.</li>
+          <li>Traditionell erhält jeder Stock seinen eigenen Pfahl. Nach rund zehn Jahren wird er kaum noch erzogen, sondern nur im Sommer hochgebunden. Ein Gamay-Stock kann älter werden als ein Mensch – und muss von Hand gelesen werden.</li>
+        </ul>
+        <p class="src">Quelle (letzter Punkt): <a href="#q-weinatlas">Weinatlas, S. 67</a></p>
+        <div class="callout"><b>Historische Anekdote:</b> 1395 verbannte Philipp der Kühne, Herzog von Burgund, den Gamay als «unredliche» Sorte aus der Côte d’Or zugunsten des Pinot Noir. Der Gamay wich nach Süden aus – und fand im Beaujolais seine Heimat.</div>
+      </div>
+      <div class="card">
+        <h3>Chardonnay</h3>
+        <span class="tag">Beaujolais blanc</span><span class="tag">wenige Prozent</span>
+        <ul>
+          <li>Für die weissen Beaujolais und Beaujolais-Villages – vor allem im Süden auf Kalk und im Norden an der Grenze zum Mâconnais.</li>
+          <li>Stilistisch nahe am Mâcon: frisch, fruchtig, oft ohne Holz.</li>
+          <li>Im Norden keltern manche Winzer auch deshalb etwas Weisswein, weil sich Rotwein zeitweise schlecht verkauft. Einige Gemeinden dürfen ihre Weissen sogar als Mâcon-Villages anbieten.</li>
+          <li>Die Branche will den Anteil ausbauen: Inter Beaujolais strebt eine Verdreifachung der Weissweinproduktion innert 5–10 Jahren an.</li>
+        </ul>
+        <p class="src">Quelle (3. Punkt): <a href="#q-weinatlas">Weinatlas, S. 66</a></p>
+        <h3>Nebensorten</h3>
+        <ul>
+          <li>Kleine Anteile weiterer Sorten (z. B. Aligoté, Pinot Noir) sind in gewissen Appellationen als Nebensorten zugelassen, spielen aber kaum eine Rolle.</li>
+          <li>Gamay-Mutationen mit farbigem Saft (Teinturiers) sind für die AOC-Weine nicht relevant.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Gamay ausserhalb des Beaujolais</h3>
+        <p>Westlich des Beaujolais, an der oberen Loire, liegen drei deutlich kleinere Gamay-Gebiete:</p>
+        <ul>
+          <li><b>Côte Roannaise</b> bei Roanne – ebenfalls auf Granit; mehrere Güter erzeugen Weine im frischen Beaujolais-Stil.</li>
+          <li><b>Côtes du Forez</b> weiter südlich – auf ähnlichem Boden, weitgehend in der Hand einer einzigen Genossenschaft.</li>
+          <li><b>Côtes d’Auvergne</b> bei Clermont-Ferrand – grösser, mit leichten Rot- und Roséweinen und etwas Weisswein.</li>
+        </ul>
+        <p class="src">Quelle: <a href="#q-weinatlas">Weinatlas, S. 67</a></p>
+        <p class="small muted">Nah an der Heimat: Auch in der Schweiz ist Gamay verbreitet, vor allem in Genf und im Wallis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPELLATIONEN -->
+<section id="appellationen">
+  <div class="wrap">
+    <h2>Appellationen &amp; Hierarchie</h2>
+    <p class="intro">Die Qualitätspyramide hat heute drei Stufen. Eine vierte – Premier Cru auf Ebene einzelner Lagen – ist beantragt (siehe <a href="#lagen">Lagen</a>).</p>
+    <div class="pyramid" aria-label="Qualitätspyramide">
+      <div class="tier t0">Premier Cru <small>beantragt · Fleurie, Brouilly, Moulin-à-Vent</small></div>
+      <div class="tier t1">10 Crus <small>nur Rotwein · kein Nouveau · Gemeinde-/Hügelnamen auf dem Etikett</small></div>
+      <div class="tier t2">Beaujolais-Villages <small>38 Gemeinden im Norden · rot, rosé, weiss · Nouveau erlaubt</small></div>
+      <div class="tier t3">Beaujolais <small>v. a. Süden (Pierres Dorées) · rot, rosé, weiss · Nouveau erlaubt</small></div>
+    </div>
+    <div class="grid g3">
+      <div class="card"><h3>Beaujolais AOC</h3><p>Grösste Fläche, meist leichte, fruchtige Weine zum unkomplizierten Trinken. Auf den Kalkböden im Süden entstehen auch die meisten Weissweine.</p></div>
+      <div class="card"><h3>Beaujolais-Villages</h3><p>Granitböden im Norden, mehr Konzentration und Struktur. Eine Gemeindebezeichnung darf angehängt werden (z. B. «Beaujolais-Villages Lantignié») – das tun aber fast nur Winzer, die selbst abfüllen. Die Handelshäuser, die den Grossteil der Produktion kontrollieren, verschneiden meist mehrere Gemeinden zu einem schlichten «Beaujolais-Villages». Der kleine Aufpreis gegenüber einfachem Beaujolais lohnt sich fast immer.</p><p class="src">Quelle: <a href="#q-weinatlas">Weinatlas, S. 66</a></p></div>
+      <div class="card"><h3>Die Crus</h3><p>Zehn Appellationen mit klar unterscheidbaren Terroirs, die zusammen nur rund ein Drittel der gesamten Produktion ausmachen. Kurios: Crus dürfen auch als «Bourgogne» bzw. «Bourgogne Gamay» deklariert werden, und manche Cru-Gemeinden dürfen ihren Rotwein auch als Beaujolais-Villages verkaufen.</p><p class="src">Quelle (Anteil, Villages): <a href="#q-weinatlas">Weinatlas, S. 66–67</a></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CRUS -->
+<section id="crus">
+  <div class="wrap">
+    <h2>Die 10 Crus (von Nord nach Süd)</h2>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>#</th><th>Cru</th><th>Charakter</th><th>Böden</th><th>Bekannte Lagen</th><th>Trinkfenster</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td class="cru">Saint-Amour</td><td>Duftig, rotfruchtig, zugänglich; die besten verbinden Frucht mit Mineralität. Traditionell der Valentinstags-Wein</td><td>Granit, Schiefer; im Norden etwas Kalk wie bei den Nachbarn Saint-Véran und Pouilly-Fuissé</td><td>En Paradis</td><td>2–6 J.</td></tr>
+          <tr><td class="num">2</td><td class="cru">Juliénas</td><td>Kräftig, würzig, dunkle Frucht; meist etwas üppiger, manchmal rustikal. Name nach Julius Cäsar (Legende), Weinbau seit über 2000 Jahren</td><td>Granit, Schiefer, alluviale Böden</td><td>Les Capitans, Les Mouilles</td><td>3–8 J.</td></tr>
+          <tr><td class="num">3</td><td class="cru">Chénas</td><td>Kleinster Cru, steht im Schatten von Moulin-à-Vent und braucht wie dieser Zeit; strukturiert, blumig-würzig. Name von «chêne» (Eiche)</td><td>Granit, sandig</td><td>–</td><td>3–8 J.</td></tr>
+          <tr><td class="num">4</td><td class="cru">Moulin-à-Vent</td><td>«König des Beaujolais»: tanninreich, tief, sehr lagerfähig; oft mit Holzausbau. Tiefer gelegene Lagen im Süden sind einfacher; die besten liegen bei der Windmühle und weiter oben</td><td>Rosa Granit mit Mangan-Adern</td><td>Bei der Mühle: Le Clos, Le Carquelin, Champ de Cour, Les Thorins. Höher: La Rochelle, Rochegrès, Les Vérillats</td><td>5–15+ J.</td></tr>
+          <tr><td class="num">5</td><td class="cru">Fleurie</td><td>«Königin»: floral (Iris, Veilchen), seidig, elegant – vor allem aus den sandigen Lagen. Aus tonigeren und warmen Südlagen kräftig wie ein Moulin-à-Vent</td><td>Rosa Granit; sandig bis tonig</td><td>Sandig: La Madone, La Chapelle des Bois, Les Quatre Vents. Kräftiger: La Roilette, Les Moriers, Les Garants, Poncié. Dazu Grille Midi</td><td>3–10 J.</td></tr>
+          <tr><td class="num">6</td><td class="cru">Chiroubles</td><td>Höchstgelegener Cru; leicht, frisch, sehr aromatisch. In kühlen Jahren eher streng, in sonnigen sehr charmant</td><td>Sandiger, verwitterter Granit</td><td>–</td><td>1–5 J.</td></tr>
+          <tr><td class="num">7</td><td class="cru">Morgon</td><td>Zweitgrösster Cru. Fleischig, Kirsche/Kirschkern; reift zu burgundischer Tiefe («morgonner»). Côte du Py kraftvoll, warm und würzig, andere Lagen leichter und runder</td><td>Granit, Schiefer, zersetzter Fels («roche pourrie»); Côte du Py an einem erloschenen Vulkan</td><td>Côte du Py, Javernières, Douby. Leichter: Corcelette, Les Charmes, Les Grands Cras, Château Gaillard</td><td>4–12 J.</td></tr>
+          <tr><td class="num">8</td><td class="cru">Régnié</td><td>Jüngster Cru (seit 1988), ganz im Westen; fruchtig, würzig, zugänglich – vergleichbar mit Brouilly oder einem guten Villages, entsprechend günstig</td><td>Sandiger Granit</td><td>–</td><td>2–6 J.</td></tr>
+          <tr><td class="num">9</td><td class="cru">Brouilly</td><td>Grösster und südlichster Cru; saftig, rotfruchtig, in der Qualität sehr unterschiedlich</td><td>Granit, Diorit, Sand</td><td>Pisse-Vieille</td><td>2–6 J.</td></tr>
+          <tr><td class="num">10</td><td class="cru">Côte de Brouilly</td><td>An den Hängen des Mont Brouilly; mineralisch, konzentrierter – im Gebiet von Brouilly die Weine, die sich am ehesten zum Einlagern lohnen</td><td>Blauer Diorit («pierre bleue») vulkanischen Ursprungs</td><td>Hänge des Mont Brouilly</td><td>3–8 J.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">Faustregel: Chiroubles, Régnié, Brouilly, Fleurie und Saint-Amour gelten als die leichteren, früh zugänglichen Crus; Moulin-à-Vent, Morgon (v. a. Côte du Py), Chénas und Juliénas als die kräftigeren, lagerfähigen. Weine von der Côte du Py sind jung fest und tanninreich und werden mit dem Alter fleischig.</p>
+    <p class="src">Ergänzungen zu Charakter, Böden und Lagen nach: <a href="#q-weinatlas">Weinatlas, S. 66 und 68</a></p>
+  </div>
+</section>
+
+<!-- LAGEN -->
+<section id="lagen">
+  <div class="wrap">
+    <h2>Lagen (Lieux-dits) &amp; der Weg zum Premier Cru</h2>
+    <p class="intro">Seit rund 15 Jahren rücken die Einzellagen in den Fokus. Eine ab 2009 durchgeführte Bodenkartierung des gesamten Gebiets hat die Unterschiede zwischen den Terroirs wissenschaftlich belegt – und den Antrag auf Premier-Cru-Status befeuert.</p>
+    <div class="grid g3">
+      <div class="card">
+        <h3>Fleurie</h3>
+        <span class="tag">Antrag Nov. 2023</span>
+        <p>Als erster Cru eingereicht. Mehr als 85 % der Winzer stimmten zu; 7 von über 40 Lagen werden vorgeschlagen: Grille Midi, La Chapelle des Bois, La Madone, La Roilette, Les Garants, Les Moriers, Poncié.</p>
+      </div>
+      <div class="card">
+        <h3>Brouilly</h3>
+        <span class="tag">Antrag 2024</span>
+        <p>Folgte als zweiter Cru mit einem Dossier für ausgewählte Lagen.</p>
+      </div>
+      <div class="card">
+        <h3>Moulin-à-Vent</h3>
+        <span class="tag">Antrag April 2024</span>
+        <p>14 Lagen vorgeschlagen, alle auf Granit – obwohl die Appellation auch vulkanische, Mergel- und Kalkböden kennt.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <b>Stand und Zeitplan:</b> Das Verfahren beim INAO dauert viele Jahre; eine Anerkennung wird um 2035 angestrebt. Das INAO hat die Regeln für Premier-Cru-Anträge ab dem Jahrgang 2024 verschärft. Unter Winzern ist das Projekt nicht unumstritten – manche halten eine offizielle Hierarchie für unnötig, andere fürchten Preisdruck auf die übrigen Weine.
+    </div>
+    <p class="small muted">Bis dahin dürfen Lagennamen bereits auf dem Etikett stehen (z. B. «Morgon Côte du Py»), allerdings ohne Premier-Cru-Bezeichnung.</p>
+  </div>
+</section>
+
+<!-- STIL -->
+<section id="stil">
+  <div class="wrap">
+    <h2>Weinstil &amp; Vinifikation</h2>
+    <div class="grid g3">
+      <div class="card">
+        <h3>Macération carbonique</h3>
+        <p>Ganze, unverletzte Trauben gären in einem mit CO₂ gefüllten Tank zunächst <i>innerhalb</i> der Beere (intrazelluläre Gärung). Ergebnis: intensive Fruchtaromen (Banane, Kirschbonbon, Kaugummi), wenig Tannin, frühe Trinkreife. Typisch für Nouveau.</p>
+      </div>
+      <div class="card">
+        <h3>Semi-carbonique</h3>
+        <p>Die traditionelle Beaujolais-Methode und heute der Normalfall: Ganztrauben in offenen oder geschlossenen Tanks, die untersten Beeren werden durch das Eigengewicht zerdrückt und gären normal, darüber läuft die Ganzbeerengärung. Die schnelle Gärung betont Duft und Frucht und hält Tannin und Apfelsäure gering.</p>
+        <p class="src">Quelle (Wirkung): <a href="#q-weinatlas">Weinatlas, S. 67</a></p>
+      </div>
+      <div class="card">
+        <h3>Burgundische Methode</h3>
+        <p>Entrappt, klassische Maischegärung mit Pigeage/Remontage, oft Ausbau im Holzfass. Mehr Tannin, mehr Tiefe – v. a. in Moulin-à-Vent und Morgon sowie bei Burgunder Häusern verbreitet. Immer mehr Erzeuger kehren zu dieser Methode zurück, um langlebigere Weine zu erhalten.</p>
+        <p class="src">Quelle (Trend): <a href="#q-weinatlas">Weinatlas, S. 67</a></p>
+      </div>
+    </div>
+    <h3>Die drei Stilfamilien</h3>
+    <p>Inter Beaujolais teilt die Weine in drei Kategorien ein:</p>
+    <div class="grid g3">
+      <div class="card"><h3>Beaujolais de Fête</h3><p>Nouveau und Primeur – jung, fröhlich, für den Moment.</p></div>
+      <div class="card"><h3>Beaujolais de Caractère</h3><p>Beaujolais und Beaujolais-Villages – saftig, vielseitig, für den Alltag.</p></div>
+      <div class="card"><h3>Beaujolais d’Exception</h3><p>Die Crus und Lagenweine – terroirgeprägt, teils mit Lagerpotenzial.</p></div>
+    </div>
+    <div class="callout"><b>Servieren:</b> leicht gekühlt – Nouveau und Beaujolais bei 11–13 °C, Crus bei 14–16 °C. Ein gereifter Moulin-à-Vent verträgt ein Burgunderglas und ggf. Dekantieren.</div>
+  </div>
+</section>
+
+<!-- PRODUZENTEN -->
+<section id="produzenten">
+  <div class="wrap">
+    <h2>Produzenten</h2>
+    <p class="intro">Eine Auswahl wichtiger Namen – von den Pionieren der Naturweinbewegung bis zu den grossen Handelshäusern.</p>
+    <div class="grid g2">
+      <div class="card">
+        <h3>Die «Gang of Four» &amp; Jules Chauvet</h3>
+        <p class="small muted">Der Chemiker und Négociant Jules Chauvet (1907–1989) gilt als Vordenker des Naturweins. Der US-Importeur Kermit Lynch gab seinen Schülern ihren Spitznamen.</p>
+        <ul>
+          <li><b>Marcel Lapierre</b> (Morgon) – heute geführt von Mathieu &amp; Camille Lapierre</li>
+          <li><b>Jean Foillard</b> (Morgon, u. a. Côte du Py)</li>
+          <li><b>Guy Breton</b> (Morgon, Régnié)</li>
+          <li><b>Jean-Paul Thévenet</b> (Morgon)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Terroir-Spezialisten &amp; Klassiker</h3>
+        <ul>
+          <li><b>Château Thivin</b> (Côte de Brouilly) – Referenz am Mont Brouilly</li>
+          <li><b>Domaine Jean-Louis Dutraive / Grand’Cour</b> (Fleurie)</li>
+          <li><b>Yvon Métras</b> (Fleurie) – Kultwinzer</li>
+          <li><b>Clos de la Roilette</b> (Fleurie)</li>
+          <li><b>Domaine Chignard</b> (Fleurie)</li>
+          <li><b>Domaine Daniel Bouland</b> (Morgon)</li>
+          <li><b>Domaine Louis-Claude Desvignes</b> (Morgon Côte du Py, Javernières)</li>
+          <li><b>Domaine Jean-Marc Burgaud</b> (Morgon, u. a. Côte du Py)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Neue Generation</h3>
+        <ul>
+          <li><b>Julien Sunier</b> (Fleurie, Morgon, Régnié)</li>
+          <li><b>Jules Desjourneys</b> (Moulin-à-Vent, Fleurie)</li>
+          <li><b>Paul-Henri Thillardon</b> (Chénas)</li>
+          <li><b>Richard Rottiers</b> (Moulin-à-Vent)</li>
+          <li><b>Anne-Sophie Dubois</b> (Fleurie)</li>
+          <li><b>Jean-Claude Lapalu</b> (Brouilly)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Burgunder im Beaujolais &amp; Négociants</h3>
+        <ul>
+          <li><b>Château des Jacques</b> (Louis Jadot, Moulin-à-Vent, u. a. Clos de Rochegrès)</li>
+          <li><b>Thibault Liger-Belair</b> (Moulin-à-Vent, u. a. La Roche)</li>
+          <li><b>Domaine Lafarge-Vial</b> (Fleurie)</li>
+          <li><b>Château du Moulin-à-Vent</b></li>
+          <li><b>Georges Duboeuf</b> – grösstes Handelshaus, Nouveau-Pionier</li>
+          <li><b>Dominique Piron</b> (Morgon)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Weitere Namen aus dem Weinatlas</h3>
+        <p class="small muted">Erzeuger, deren Etiketten abgebildet oder die auf den Karten als bedeutend eingezeichnet sind.</p>
+        <ul>
+          <li><b>Domaine Hubert Lapierre</b> (Moulin-à-Vent, Cuvée Vieilles Vignes) – nicht verwandt mit Marcel Lapierre</li>
+          <li><b>Domaine de la Frétière</b> (Fleurie)</li>
+          <li><b>Pardon &amp; Fils</b> (Morgon Côte du Py)</li>
+          <li><b>Château de la Terrière</b> (Brouilly)</li>
+          <li><b>Villa Ponciago</b> (Fleurie)</li>
+          <li><b>Domaine Chevalier-Métrat</b> (Morgon)</li>
+          <li><b>Domaine Nicole Chanrion</b> (Côte de Brouilly)</li>
+          <li><b>Château de la Chaize</b> (Brouilly)</li>
+          <li><b>Domaine du Vissoux</b> und die Genossenschaft <b>Vignerons des Pierres Dorées</b> (Süden)</li>
+          <li><b>Loron et Fils</b> (Handelshaus, Pontanevaux)</li>
+        </ul>
+        <p class="src">Quelle: <a href="#q-weinatlas">Weinatlas, S. 66–68</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRADITIONEN -->
+<section id="traditionen">
+  <div class="wrap">
+    <h2>Traditionen &amp; Kultur</h2>
+    <div class="grid g3">
+      <div class="card">
+        <h3>Les Sarmentelles de Beaujeu</h3>
+        <p>Das historische Nouveau-Fest in Beaujeu, seit 1989. Mehrere Tage rund um den dritten Donnerstag im November, mit Fackelumzug und dem Anstich um Mitternacht. 2026: 18.–22. November.</p>
+      </div>
+      <div class="card">
+        <h3>Pot lyonnais &amp; Bouchons</h3>
+        <p>Die Trinkkultur rund um den Beaujolais ist in Lyon zu Hause – siehe <a href="#lyon">Lyon &amp; der Beaujolais</a>.</p>
+      </div>
+      <div class="card">
+        <h3>Fête des Conscrits</h3>
+        <p>In Villefranche-sur-Saône feiern Ende Januar die Jahrgänge, die ein «rundes» Jahrzehnt erreichen, mit der «Vague» – einem Umzug Arm in Arm durch die Stadt. Ein Brauch, der in vielen Beaujolais-Dörfern lebt.</p>
+      </div>
+      <div class="card">
+        <h3>Clochemerle</h3>
+        <p>Gabriel Chevalliers satirischer Roman (1934) über den Streit um ein Pissoir spielt in einem fiktiven Winzerdorf, inspiriert von Vaux-en-Beaujolais – das Dorf hat das Image dankbar übernommen.</p>
+      </div>
+      <div class="card">
+        <h3>Caveaux &amp; Gobelet</h3>
+        <p>Viele Cru-Gemeinden betreiben einen gemeinsamen «Caveau» zur Degustation. Die buschartig erzogenen Gobelet-Reben prägen das Landschaftsbild ebenso wie die Handlese, die für die Ganztraubengärung unverzichtbar ist.</p>
+      </div>
+      <div class="card">
+        <h3>Kapellen auf den Hügeln</h3>
+        <p>Die Chapelle de la Madone über Fleurie und die Kapelle auf dem Mont Brouilly sind Wahrzeichen – inklusive Weinsegnungen und Wallfahrten.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORTE -->
+<section id="orte">
+  <div class="wrap">
+    <h2>Orte &amp; Reisetipps</h2>
+    <div class="grid g3">
+      <div class="card"><h3>Lyon</h3><p>Ausgangspunkt jeder Beaujolais-Reise: Bouchons, Pot lyonnais und die Halles Paul Bocuse. Die Crus liegen rund eine Autostunde nördlich. Mehr unter <a href="#lyon">Lyon &amp; der Beaujolais</a>.</p></div>
+      <div class="card"><h3>Villefranche-sur-Saône</h3><p>Wirtschaftliches Zentrum und Hauptort des Beaujolais; Sitz von Inter Beaujolais. Mit dem TER rund 30 Minuten ab Lyon.</p></div>
+      <div class="card"><h3>Beaujeu</h3><p>Historische Hauptstadt, Namensgeberin der Region (Herren von Beaujeu). Weinmuseum und Sarmentelles.</p></div>
+      <div class="card"><h3>Romanèche-Thorins</h3><p>Am Fusse von Moulin-à-Vent; Hameau du Vin (Duboeuf) als Erlebniswelt rund um Wein.</p></div>
+      <div class="card"><h3>Moulin-à-Vent</h3><p>Die namensgebende Windmühle, Wahrzeichen des Crus und Fotospot über den Reben.</p></div>
+      <div class="card"><h3>Fleurie &amp; La Madone</h3><p>Kapelle mit Rundumblick über die Crus bis zur Saône und bei klarer Sicht zum Mont Blanc.</p></div>
+      <div class="card"><h3>Mont Brouilly</h3><p>Isolierter Vulkanhügel (ca. 485 m) mit Kapelle und Panorama, Wanderwege durch die Reben.</p></div>
+      <div class="card"><h3>Oingt &amp; Pierres Dorées</h3><p>Goldgelbe Kalksteindörfer im Süden; Oingt zählt zu den «Plus beaux villages de France». Ideal für eine Wanderung.</p></div>
+      <div class="card"><h3>Vaux-en-Beaujolais</h3><p>Das «echte» Clochemerle – mit Augenzwinkern inszeniert.</p></div>
+    </div>
+    <p class="small muted">Anreise aus der Schweiz: ab Genf rund 2 Stunden mit dem Auto; per Bahn via Lyon oder Mâcon.</p>
+  </div>
+</section>
+
+<!-- ESSEN -->
+<section id="essen">
+  <div class="wrap">
+    <h2>Essen &amp; Wein</h2>
+    <div class="tbl">
+      <table style="min-width:600px">
+        <thead><tr><th>Wein</th><th>Passt zu</th></tr></thead>
+        <tbody>
+          <tr><td><b>Nouveau / Beaujolais</b></td><td>Charcuterie, Saucisson (auch brioché), Rosette, Gratons, Rillettes, Pâté en croûte, Pizza, Picknick, Apéro</td></tr>
+          <tr><td><b>Beaujolais-Villages</b></td><td>Bistroküche: Andouillette, Salade lyonnaise, Quiche, Burger, Brathähnchen</td></tr>
+          <tr><td><b>Leichte Crus</b> (Chiroubles, Fleurie, Saint-Amour)</td><td>Lachs, Thunfisch, Geflügel, Gemüse-Gerichte, Ziegenkäse</td></tr>
+          <tr><td><b>Kräftige Crus</b> (Morgon, Moulin-à-Vent, Juliénas)</td><td>Coq au vin, Bresse-Huhn, Quenelles, Entrecôte, Wild, Pilzgerichte, Comté</td></tr>
+          <tr><td><b>Beaujolais blanc</b></td><td>Süsswasserfisch, Gratins, Saint-Marcellin, Cervelle de canut</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">Tipp: Gamay mit seiner Säure und geringen Tanninen ist ein starker Allrounder – auch zu leicht scharfen asiatischen Gerichten oder zu Raclette.</p>
+  </div>
+</section>
+
+<!-- TRENDS -->
+<section id="trends">
+  <div class="wrap">
+    <h2>Trends &amp; Herausforderungen</h2>
+    <div class="grid g2">
+      <div class="card">
+        <h3>Strukturwandel</h3>
+        <ul>
+          <li>Die Rebfläche ist in rund 20 Jahren von etwa 22 000 auf rund 13 000 ha geschrumpft – v. a. steile, schwer zu bewirtschaftende Parzellen werden aufgegeben. (Der Weinatlas nennt in seiner Ausgabe noch rund 20 000 ha.)</li>
+          <li>Der Nouveau-Absatz ist stark rückläufig; die Region positioniert sich über Crus und Lagen neu.</li>
+          <li>Klimawandel: frühere Lese, Hagel- und Trockenheitsrisiken, aber oft reifere, dichtere Jahrgänge.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Aufwertung</h3>
+        <ul>
+          <li><b>Premier-Cru-Anträge</b> für Fleurie, Brouilly und Moulin-à-Vent.</li>
+          <li><b>Burgunder Investoren</b> kaufen Lagen – im Vergleich zur Côte d’Or sind die Bodenpreise tief.</li>
+          <li><b>Weissweinoffensive:</b> mehr Chardonnay als Antwort auf die Nachfrage.</li>
+          <li><b>Naturwein &amp; Bio:</b> das Beaujolais ist eine Wiege der Naturweinbewegung und weiterhin Treiber.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOSSAR -->
+<section id="glossar">
+  <div class="wrap">
+    <h2>Glossar</h2>
+    <div class="card">
+      <dl class="glossary">
+        <dt>Bouchon</dt><dd>Traditionelles Lyoner Wirtshaus mit deftiger Küche und Beaujolais im Pot.</dd>
+        <dt>Cru</dt><dd>Eine der zehn höchsten Appellationen des Beaujolais, benannt nach Gemeinde oder Hügel.</dd>
+        <dt>Échalas</dt><dd>Einzelpfahl, an dem traditionell jeder Gamay-Stock gestützt wird.</dd>
+        <dt>Gnafron</dt><dd>Weinseliger Freund des Guignol im Lyoner Puppentheater, Symbolfigur der Bouchons.</dd>
+        <dt>Gobelet</dt><dd>Traditionelle Buscherziehung der Rebe ohne Drahtrahmen.</dd>
+        <dt>Haut-/Bas-Beaujolais</dt><dd>Der granitige Norden («oberes» Beaujolais) und der tonig-kalkige Süden («unteres»), getrennt etwa auf der Höhe von Villefranche.</dd>
+        <dt>Inter Beaujolais</dt><dd>Branchenverband der Beaujolais-Weine mit Sitz in Villefranche-sur-Saône.</dd>
+        <dt>Lieu-dit</dt><dd>Katasterlich eingetragene Einzellage innerhalb einer Appellation.</dd>
+        <dt>Mâchon</dt><dd>Deftiges Lyoner Vormittagsessen mit Charcuterie und Beaujolais.</dd>
+        <dt>Macération carbonique</dt><dd>Gärung ganzer Trauben unter CO₂, beginnend innerhalb der Beere.</dd>
+        <dt>Morgonner</dt><dd>Wenn ein Gamay mit der Reife burgundische Tiefe und Würze entwickelt – nach Morgon benannt.</dd>
+        <dt>Pierre bleue</dt><dd>Blauer Diorit am Mont Brouilly.</dd>
+        <dt>Pierres Dorées</dt><dd>Goldgelber, eisenhaltiger Kalkstein im südlichen Beaujolais – und die daraus gebauten Dörfer.</dd>
+        <dt>Pot lyonnais</dt><dd>46-cl-Flasche mit dickem Boden, in der die Lyoner Bouchons den Wein ausschenken.</dd>
+        <dt>Premier Cru</dt><dd>Offiziell klassifizierte Spitzenlage; im Beaujolais beantragt, noch nicht anerkannt.</dd>
+        <dt>Primeur / Nouveau</dt><dd>Wein, der noch im Erntejahr verkauft wird.</dd>
+        <dt>Roche pourrie</dt><dd>«Fauler Fels» – stark verwitterter, bröseliger Schiefer, typisch für die Côte du Py in Morgon.</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Quellen &amp; weiterführende Links</b></p>
+    <ol>
+      <li><a href="https://www.beaujolais.com/en/?p=8013">Inter Beaujolais – Futures Beaujolais Premiers Crus?</a></li>
+      <li><a href="https://www.beaujolais.com/wp-content/uploads/sites/2/2023/10/Dossier-de-presse-Beaujolais-Nouveaux-Millesime-2023.pdf">Inter Beaujolais – Dossier de presse Beaujolais Nouveaux 2023</a></li>
+      <li><a href="https://www.bkwine.com/?p=418488">BKWine – Beaujolais has lost 40% of its area</a></li>
+      <li><a href="https://www.winewithseth.com/winewiki/beaujolais-villages-aoc/?path=beaujolais">Wine with Seth – Beaujolais-Villages AOC</a></li>
+      <li><a href="https://www.winewithseth.com/winewiki/beaujolais-aoc/">Wine with Seth – Beaujolais AOC</a></li>
+      <li><a href="https://spokesman.com/stories/2024/apr/17/beaujolais-known-for-casual-wine-wants-to-be-taken">Spokesman-Review – Beaujolais wants to be taken seriously (2024)</a></li>
+      <li><a href="https://www.decanter.com/premium/beaujolais-assessing-its-premier-cru-potential-491176">Decanter – Beaujolais: assessing its premier cru potential</a></li>
+      <li><a href="https://v1.vinous.com/articles/gamayzing-beaujolais-new-releases-may-2026">Vinous – Gamayzing: Beaujolais New Releases (Mai 2026)</a></li>
+      <li><a href="https://www.reussir.fr/vigne/le-beaujolais-nouveau-reprend-des-couleurs">Réussir Vigne – Le beaujolais nouveau reprend des couleurs</a></li>
+      <li><a href="https://www.reussir.fr/vigne/le-beaujolais-veut-tripler-sa-production-de-vin-blanc">Réussir Vigne – Le Beaujolais veut tripler sa production de vin blanc</a></li>
+      <li><a href="https://www.festivalenfrance.com/festival/les-sarmentelles-de-beaujeu">Les Sarmentelles de Beaujeu 2026</a></li>
+      <li id="q-weinatlas">Hugh Johnson, Jancis Robinson: <i>Der Weinatlas</i> (deutsche Ausgabe), Kapitel Frankreich › Burgund › Beaujolais, S. 66–68 «Beaujolais» und «Die Beaujolais-Crus», mit Karten und Etiketten (Buch).</li>
+    </ol>
+    <p>Stand: November 2026. Angaben zu Trinkfenstern und Speisebegleitung sind Richtwerte. Schriften: Geist und Newsreader (SIL Open Font License).</p>
+  </div>
+</footer>
+
+<script>
+  // Countdown zum Beaujolais-Nouveau-Tag (3. Donnerstag im November).
+  // Bis 30 Tage nach dem Nouveau-Tag zeigt er «ist da», danach den nächsten Termin.
+  (function(){
+    function thirdThursdayOfNovember(year){
+      const d = new Date(year, 10, 1);
+      const offset = (4 - d.getDay() + 7) % 7; // 4 = Donnerstag
+      return new Date(year, 10, 1 + offset + 14);
+    }
+    const DAY = 86400000;
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const fmtOpts = {weekday:'long', day:'numeric', month:'long', year:'numeric'};
+    const elDays = document.getElementById('cd-days');
+    const elLabel = document.getElementById('cd-label');
+    const elDate = document.getElementById('cd-date');
+
+    let target = thirdThursdayOfNovember(today.getFullYear());
+    const since = Math.round((today - target) / DAY);
+    if (since > 0 && since <= 30){
+      elDays.textContent = since;
+      elLabel.textContent = 'Der Nouveau ' + target.getFullYear() + ' ist da – Santé !';
+      elDate.textContent = (since === 1 ? 'Seit gestern' : 'Seit ' + since + ' Tagen') + ' im Glas, freigegeben am ' + target.toLocaleDateString('de-CH', fmtOpts) + '.';
+      return;
+    }
+    if (since > 0) target = thirdThursdayOfNovember(today.getFullYear() + 1);
+    const days = Math.round((target - today) / DAY);
+    const fmt = target.toLocaleDateString('de-CH', fmtOpts);
+    if (days === 0){
+      elDays.textContent = '🍷';
+      elLabel.textContent = 'Heute ist Beaujolais-Nouveau-Tag!';
+      elDate.textContent = 'Le Beaujolais Nouveau est arrivé ! – ' + fmt;
+    } else {
+      elDays.textContent = days;
+      elLabel.textContent = days === 1 ? 'Tag bis zum Beaujolais Nouveau' : 'Tage bis zum Beaujolais Nouveau';
+      elDate.textContent = fmt + ', ab 00:01 Uhr';
+    }
+  })();
+</script>
+</body>
+</html>
